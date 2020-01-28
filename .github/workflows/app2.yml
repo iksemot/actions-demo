@@ -1,0 +1,23 @@
+name: App 2
+
+on:
+  pull_request:
+    paths:
+    - app2/**
+    - .github/workflows/app2.yaml
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: |
+        cd app1
+    - name: Run linter
+      env:
+        CI: true
+      run: npm run lint
